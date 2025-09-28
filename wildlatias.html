@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;A Wild Latias Appeared! — Lucas Attias&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="Portfolio, Steam game, music projects, and journal by Lucas Attias." /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:root { --bg:#0b0d12; --fg:#e7ecf7; --muted:#a7b0c0; --panel:#121620; --panel-2:#1b2130; --ring: rgba(124,156,255,.5); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>*{box-sizing:border-box}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin:0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background:var(--bg); color:var(--fg);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>min-height:100svh; display:grid; place-items:center; padding:20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.card{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width:min(900px,100%); margin:0 auto; background:var(--panel);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border:1px solid rgba(255,255,255,.08); border-radius:20px; overflow:hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow:0 20px 60px rgba(0,0,0,.45)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>header{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding:24px 24px 8px; text-align:center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display:flex; flex-direction:column; align-items:center; justify-content:center</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.site-title{margin:0; font-size:clamp(22px,3vw,28px); font-weight:800; letter-spacing:.3px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.your-name{margin:6px 0 16px 0; color:var(--muted); font-weight:600}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Centered launcher */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.launcher{display:flex; justify-content:center; align-items:center; padding:8px 24px 20px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.menu-button{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display:flex; align-items:center; justify-content:center; gap:6px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding:12px 14px; background:var(--panel-2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border:1px solid rgba(255,255,255,.14); border-radius:14px; color:var(--fg);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor:pointer; box-shadow:0 8px 22px rgba(0,0,0,.35)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.menu-button:focus-visible{outline:2px solid var(--ring); outline-offset:4px}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Make icon images scale nicely */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.icon{ display:block; height:40px; width:auto; }<span class="Apple-converted-space">        </span>/* &lt;— updated icon scale */</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Main image */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hero{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display:block; width:100%; height:auto; max-height:520px; object-fit:cover;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-top:1px solid rgba(255,255,255,.06); margin:0 auto</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Full-screen opaque dropdown overlay */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.overlay{ position:fixed; inset:0; display:none; z-index:50; background:#0d111a }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.overlay[data-open="true"]{ display:block }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.overlay-inner{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width:720px; margin:10vh auto; background:var(--panel-2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border:1px solid rgba(255,255,255,.12); border-radius:16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow:0 25px 80px rgba(0,0,0,.6); padding:10px</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Tabs inside overlay */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tab{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding:14px 14px; background:transparent; color:var(--fg);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border:0; border-radius:10px; font-weight:700; cursor:pointer</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tab:hover,.tab:focus-visible{ background:rgba(255,255,255,.08); outline:none }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.caret{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inline-size:10px; block-size:10px; border-right:2px solid currentColor; border-bottom:2px solid currentColor;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform:rotate(-45deg); transition:transform .18s ease; opacity:.85</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tab[aria-expanded="true"] .caret{ transform:rotate(45deg) }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.submenu{ display:none; padding:6px 8px 12px 8px }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.submenu[data-open="true"]{ display:block }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.submenu a{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display:grid; grid-template-columns:22px 1fr; align-items:center; gap:10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding:10px; color:var(--fg); text-decoration:none; border-radius:8px</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.submenu a:hover{ background:rgba(255,255,255,.06) }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hint{ color:var(--muted); font-size:12px }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.overlay-header{ display:flex; align-items:center; justify-content:space-between; padding:6px 8px 0 8px }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.overlay-title{ margin:0 0 4px 8px; font-size:18px; color:var(--muted) }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.close-btn{ background:transparent; border:1px solid rgba(255,255,255,.18); color:var(--fg); border-radius:10px; padding:8px 10px; cursor:pointer }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.close-btn:hover{ background:rgba(255,255,255,.08) }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Mobile tweaks */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 540px){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>body{padding:12px}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.card{border-radius:14px}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.menu-button{padding:14px 16px}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.overlay-inner{margin:6vh 12px;}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.tab{padding:16px}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.submenu a{padding:12px}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.close-btn{padding:10px 12px}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.icon{height:36px} /* slightly smaller on phones */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Safe-area for iOS cutouts */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.overlay{ padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left) }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1 class="site-title"&gt;A Wild Latias Appeared!&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="your-name"&gt;Lucas Attias&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="launcher"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="menuOverlay"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;img src="images/latias_menu.png" alt="Menu" class="icon" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img class="hero" src="LastSupper_home.png" alt="Main page image" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Opaque overlay that hides the image and shows dropdown headings --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="menuOverlay" class="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="overlay-inner"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="overlay-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="overlay-title"&gt;Browse&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="close-btn" id="closeOverlay"&gt;Close ✕&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- About tab --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="tab" aria-expanded="false" aria-controls="aboutSub"&gt;About &lt;span class="caret" aria-hidden="true"&gt;&lt;/span&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="aboutSub" class="submenu" data-open="false"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a role="menuitem" href="/resume/Lattias_resume.pdf" target="_blank" rel="noopener"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;📄&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;Resume&lt;br&gt;&lt;span class="hint"&gt;Opens PDF&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a role="menuitem" href="/mission.html"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;✨&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;Mission Statement&lt;br&gt;&lt;span class="hint"&gt;New page&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Projects tab --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="tab" aria-expanded="false" aria-controls="projectsSub"&gt;Projects &lt;span class="caret" aria-hidden="true"&gt;&lt;/span&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="projectsSub" class="submenu" data-open="false"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a role="menuitem" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;🧰&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;Portfolio&lt;br&gt;&lt;span class="hint"&gt;GitHub repositories&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a role="menuitem" href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;🎮&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;Steam&lt;br&gt;&lt;span class="hint"&gt;Store page&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a role="menuitem" href="https://soundcloud.com/rigatoni_od" target="_blank" rel="noopener"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;🎵&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;Music&lt;br&gt;&lt;span class="hint"&gt;SoundCloud profile&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Journals tab --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="tab" aria-expanded="false" aria-controls="journalsSub"&gt;Journals &lt;span class="caret" aria-hidden="true"&gt;&lt;/span&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="journalsSub" class="submenu" data-open="false"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Rename your PDF file to match this safe path (no spaces) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a role="menuitem" href="/journals/Thoughts-and-Prayers-From-9-Garden-North-by-Lattias.pdf" target="_blank" rel="noopener"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;📝&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;Thoughts and Prayers From 9 Garden North by Lattias&lt;br&gt;&lt;span class="hint"&gt;Opens PDF&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const menuBtn = document.getElementById('menuButton');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const overlay = document.getElementById('menuOverlay');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const closeBtn = document.getElementById('closeOverlay');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function setOverlay(open){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overlay.setAttribute('data-open', String(open));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>menuBtn.setAttribute('aria-expanded', String(open));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.body.style.overflow = open ? 'hidden' : '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>menuBtn.addEventListener('click', () =&gt; setOverlay(true));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>closeBtn.addEventListener('click', () =&gt; setOverlay(false));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Click outside inner panel closes</p>
+<p class="p1"><span class="Apple-converted-space">    </span>overlay.addEventListener('click', (e)=&gt;{ if(e.target===overlay) setOverlay(false); });</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Keyboard handling</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener('keydown', (e)=&gt;{ if(e.key==='Escape') setOverlay(false); });</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Accordion behavior for tabs</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.tab').forEach(tabBtn =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tabBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const controls = tabBtn.getAttribute('aria-controls');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const panel = document.getElementById(controls);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const expanded = tabBtn.getAttribute('aria-expanded') === 'true';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// close others</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.tab').forEach(b =&gt; { if (b!==tabBtn) b.setAttribute('aria-expanded','false'); });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.submenu').forEach(s =&gt; { if (s!==panel) s.setAttribute('data-open','false'); });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tabBtn.setAttribute('aria-expanded', String(!expanded));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>panel.setAttribute('data-open', String(!expanded));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
