@@ -9,31 +9,75 @@
   <style>
     :root { --bg:#0b0d12; --fg:#e7ecf7; --muted:#a7b0c0; --panel:#121620; --panel-2:#1b2130; --ring: rgba(124,156,255,.5); }
     *{box-sizing:border-box}
-    body{ margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial; background:var(--bg); color:var(--fg); min-height:100svh; display:grid; place-items:center; padding:20px; }
-    .card{ width:min(900px,100%); margin:0 auto; background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.45) }
-    header{ padding:24px 24px 8px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center }
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg); color:var(--fg);
+      min-height:100svh; display:grid; place-items:center; padding:20px;
+    }
+    .card{
+      width:min(900px,100%); margin:0 auto; background:var(--panel);
+      border:1px solid rgba(255,255,255,.08); border-radius:20px; overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,.45)
+    }
+    header{
+      padding:24px 24px 8px; text-align:center;
+      display:flex; flex-direction:column; align-items:center; justify-content:center
+    }
     .site-title{margin:0; font-size:clamp(22px,3vw,28px); font-weight:800; letter-spacing:.3px}
     .your-name{margin:6px 0 16px 0; color:var(--muted); font-weight:600}
 
-    .launcher{display:flex; justify-content:center; align-items:center; padding:8px 24px 20px}
-    .menu-button{ display:flex; align-items:center; justify-content:center; gap:6px; min-width: 120px; padding:12px 14px; background:var(--panel-2); border:1px solid rgba(255,255,255,.14); border-radius:14px; color:var(--fg); cursor:pointer; box-shadow:0 8px 22px rgba(0,0,0,.35) }
+    /* Centered launcher */
+    .launcher{display:flex; justify-content:center; align-items:center; padding:8px 24px 12px} /* was 20px bottom */
+    .menu-button{
+      display:flex; align-items:center; justify-content:center; gap:6px;
+      min-width:140px;                   /* wider baseline */
+      padding:12px 28px;                 /* more horizontal space */
+      background:var(--panel-2);
+      border:1px solid rgba(255,255,255,.14); border-radius:14px; color:var(--fg);
+      cursor:pointer; box-shadow:0 8px 22px rgba(0,0,0,.35)
+    }
     .menu-button:focus-visible{outline:2px solid var(--ring); outline-offset:4px}
-    .icon{ display:block; height:auto; width:80px; } /* updated icon scale */
+    .icon{ display:block; width:86px; height:auto; }  /* bigger icon; scales with button */
 
-    .hero{ display:block; width:100%; height:auto; max-height:520px; object-fit:cover; border-top:1px solid rgba(255,255,255,.06); margin:0 auto }
+    /* Main image */
+    .hero{
+      display:block; width:100%; height:auto; max-height:520px; object-fit:cover;
+      /* border-top removed to eliminate the thin line above the image */
+      margin:0 auto
+    }
 
+    /* Full-screen opaque dropdown overlay */
     .overlay{ position:fixed; inset:0; display:none; z-index:50; background:#0d111a }
     .overlay[data-open="true"]{ display:block }
-    .overlay-inner{ max-width:720px; margin:10vh auto; background:var(--panel-2); border:1px solid rgba(255,255,255,.12); border-radius:16px; box-shadow:0 25px 80px rgba(0,0,0,.6); padding:10px }
-    .tab{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 14px; background:transparent; color:var(--fg); border:0; border-radius:10px; font-weight:700; cursor:pointer }
+    .overlay-inner{
+      max-width:720px; margin:10vh auto; background:var(--panel-2);
+      border:1px solid rgba(255,255,255,.12); border-radius:16px;
+      box-shadow:0 25px 80px rgba(0,0,0,.6); padding:10px
+    }
+
+    /* Tabs inside overlay */
+    .tab{
+      width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:14px 14px; background:transparent; color:var(--fg);
+      border:0; border-radius:10px; font-weight:700; cursor:pointer
+    }
     .tab:hover,.tab:focus-visible{ background:rgba(255,255,255,.08); outline:none }
-    .caret{ inline-size:10px; block-size:10px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(-45deg); transition:transform .18s ease; opacity:.85 }
+    .caret{
+      inline-size:10px; block-size:10px; border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+      transform:rotate(-45deg); transition:transform .18s ease; opacity:.85
+    }
     .tab[aria-expanded="true"] .caret{ transform:rotate(45deg) }
+
     .submenu{ display:none; padding:6px 8px 12px 8px }
     .submenu[data-open="true"]{ display:block }
-    .submenu a{ display:grid; grid-template-columns:22px 1fr; align-items:center; gap:10px; padding:10px; color:var(--fg); text-decoration:none; border-radius:8px }
+    .submenu a{
+      display:grid; grid-template-columns:22px 1fr; align-items:center; gap:10px;
+      padding:10px; color:var(--fg); text-decoration:none; border-radius:8px
+    }
     .submenu a:hover{ background:rgba(255,255,255,.06) }
     .hint{ color:var(--muted); font-size:12px }
+
     .overlay-header{ display:flex; align-items:center; justify-content:space-between; padding:6px 8px 0 8px }
     .overlay-title{ margin:0 0 4px 8px; font-size:18px; color:var(--muted) }
     .close-btn{ background:transparent; border:1px solid rgba(255,255,255,.18); color:var(--fg); border-radius:10px; padding:8px 10px; cursor:pointer }
@@ -42,13 +86,15 @@
     @media (max-width: 540px){
       body{padding:2px}
       .card{border-radius:14px}
-      .menu-button{padding:14px 16px}
+      .menu-button{padding:14px 18px; min-width:120px} /* comfortable tap size on phones */
       .overlay-inner{margin:6vh 12px;}
       .tab{padding:16px}
       .submenu a{padding:12px}
       .close-btn{padding:10px 12px}
-      .icon{height:36px}
+      .icon{width:64px} /* slightly smaller on phones */
     }
+
+    /* Safe-area for iOS cutouts */
     .overlay{ padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left) }
   </style>
 </head>
@@ -75,9 +121,10 @@
         <button class="close-btn" id="closeOverlay">Close ✕</button>
       </div>
 
+      <!-- About -->
       <button class="tab" aria-expanded="false" aria-controls="aboutSub">About <span class="caret" aria-hidden="true"></span></button>
       <div id="aboutSub" class="submenu" data-open="false">
-        <a role="menuitem" href="Lattias_resume.pdf" target="_blank" rel="noopener">
+        <a role="menuitem" href="/Lattias_resume.pdf" target="_blank" rel="noopener">
           <span>📄</span>
           <span>Resume<br><span class="hint">Opens PDF</span></span>
         </a>
@@ -87,6 +134,7 @@
         </a>
       </div>
 
+      <!-- Projects -->
       <button class="tab" aria-expanded="false" aria-controls="projectsSub">Projects <span class="caret" aria-hidden="true"></span></button>
       <div id="projectsSub" class="submenu" data-open="false">
         <a role="menuitem" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
@@ -103,9 +151,10 @@
         </a>
       </div>
 
+      <!-- Journals -->
       <button class="tab" aria-expanded="false" aria-controls="journalsSub">Journals <span class="caret" aria-hidden="true"></span></button>
       <div id="journalsSub" class="submenu" data-open="false">
-        <a role="menuitem" href="Thoughts-and-Prayers-From-9-Garden-North-by-Lattias.pdf" target="_blank" rel="noopener">
+        <a role="menuitem" href="/Thoughts-and-Prayers-From-9-Garden-North-by-Lattias.pdf" target="_blank" rel="noopener">
           <span>📝</span>
           <span>Thoughts and Prayers From 9 Garden North by Lattias<br><span class="hint">Opens PDF</span></span>
         </a>
