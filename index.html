@@ -42,11 +42,15 @@
 
     /* Main image */
     .hero{
-      display:block; width:75%; height:75%; max-height:520px; object-position:center;
-      /* border-top removed to eliminate the thin line above the image */
-      margin:0;
-      border:0;
-      padding:0;
+        display:block;
+        width:100%;
+        height:auto;
+        max-height:520px;
+        object-fit:cover;
+        object-position:center; /* <-- keeps the middle part visible */
+        margin:0;
+        border:0;
+        padding:0;
     }
 
     /* Full-screen opaque dropdown overlay */
