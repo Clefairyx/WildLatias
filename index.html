@@ -16,7 +16,7 @@
     .your-name{margin:6px 0 16px 0; color:var(--muted); font-weight:600}
 
     .launcher{display:flex; justify-content:center; align-items:center; padding:8px 24px 20px}
-    .menu-button{ display:flex; align-items:center; justify-content:center; gap:6px; padding:12px 14px; background:var(--panel-2); border:1px solid rgba(255,255,255,.14); border-radius:14px; color:var(--fg); cursor:pointer; box-shadow:0 8px 22px rgba(0,0,0,.35) }
+    .menu-button{ display:flex; align-items:center; justify-content:center; gap:6px; min-width: 120px; padding:12px 14px; background:var(--panel-2); border:1px solid rgba(255,255,255,.14); border-radius:14px; color:var(--fg); cursor:pointer; box-shadow:0 8px 22px rgba(0,0,0,.35) }
     .menu-button:focus-visible{outline:2px solid var(--ring); outline-offset:4px}
     .icon{ display:block; height:auto; width:80px; } /* updated icon scale */
 
@@ -77,7 +77,7 @@
 
       <button class="tab" aria-expanded="false" aria-controls="aboutSub">About <span class="caret" aria-hidden="true"></span></button>
       <div id="aboutSub" class="submenu" data-open="false">
-        <a role="menuitem" href="/resume/Lattias_resume.pdf" target="_blank" rel="noopener">
+        <a role="menuitem" href="Lattias_resume.pdf" target="_blank" rel="noopener">
           <span>📄</span>
           <span>Resume<br><span class="hint">Opens PDF</span></span>
         </a>
@@ -105,7 +105,7 @@
 
       <button class="tab" aria-expanded="false" aria-controls="journalsSub">Journals <span class="caret" aria-hidden="true"></span></button>
       <div id="journalsSub" class="submenu" data-open="false">
-        <a role="menuitem" href="/journals/Thoughts-and-Prayers-From-9-Garden-North-by-Lattias.pdf" target="_blank" rel="noopener">
+        <a role="menuitem" href="Thoughts-and-Prayers-From-9-Garden-North-by-Lattias.pdf" target="_blank" rel="noopener">
           <span>📝</span>
           <span>Thoughts and Prayers From 9 Garden North by Lattias<br><span class="hint">Opens PDF</span></span>
         </a>
