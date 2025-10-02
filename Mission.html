@@ -3,118 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Personal Statement — Lucas Attias</title>
+  <title>Mission Statement — Lucas Attias</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial;
-      background: #0b0d12;
-      color: #e7ecf7;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-    }
-    .mission {
-      max-width: 800px;
-      background: #121620;
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.45);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    p {
-      line-height: 1.6;
-      font-size: 18px;
-    }
-    .email {
-      text-align: center;
-      margin-top: 30px;
-      font-weight: 600;
-      cursor: pointer;
-      padding: 10px;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 8px;
-      display: inline-block;
-    }
-    .email:hover {
-      background: rgba(255,255,255,0.08);
+    :root { --bg:#0b0d12; --fg:#e7ecf7; --muted:#a7b0c0; --panel:#121620; --panel-2:#1b2130; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    .card{max-width:900px;margin:20px auto;background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.45);overflow:hidden}
+    header{padding:20px;text-align:center}
+    .site-title{margin:0;font-size:clamp(28px,4vw,36px);font-weight:800}
+    .your-name{margin:8px 0 12px;color:var(--muted);font-weight:600;font-size:clamp(18px,2.5vw,24px)}
+
+    .launcher{display:flex;justify-content:center;align-items:center;padding:8px 24px 12px}
+    .menu-button{display:flex;align-items:center;justify-content:center;gap:6px;min-width:140px;padding:12px 28px;background:var(--panel-2);border:1px solid rgba(255,255,255,.14);border-radius:14px;color:var(--fg);cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+    .menu-button:focus-visible{outline:2px solid rgba(124,156,255,.5);outline-offset:4px}
+    .icon{display:block;width:86px;height:auto}
+
+    .overlay{position:fixed;inset:0;display:none;z-index:50;background:#0d111a}
+    .overlay[data-open="true"]{display:block}
+    .overlay-inner{max-width:720px;margin:10vh auto;background:var(--panel-2);border:1px solid rgba(255,255,255,.12);border-radius:16px;box-shadow:0 25px 80px rgba(0,0,0,.6);padding:10px}
+    .overlay-header{display:flex;align-items:center;justify-content:space-between;padding:6px 8px 0}
+    .overlay-title{margin:0 0 4px 8px;font-size:18px;color:var(--muted)}
+    .close-btn{background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--fg);border-radius:10px;padding:8px 10px;cursor:pointer}
+    .close-btn:hover{background:rgba(255,255,255,.08)}
+    .tab{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 20px;background:transparent;color:var(--fg);border:0;border-radius:10px;font-weight:700;font-size:20px;cursor:pointer}
+    .tab:hover{background:rgba(255,255,255,.08)}
+    .caret{inline-size:10px;block-size:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);opacity:.85}
+    .tab[aria-expanded="true"] .caret{transform:rotate(45deg)}
+    .submenu{display:none;padding:6px 8px 12px}
+    .submenu[data-open="true"]{display:block}
+    .submenu a{display:grid;grid-template-columns:32px 1fr;align-items:center;gap:12px;padding:14px;color:var(--fg);text-decoration:none;border-radius:8px;font-size:18px}
+    .submenu a:hover{background:rgba(255,255,255,.06)}
+    .submenu a span:first-child{font-size:24px}
+    .hint{color:var(--muted);font-size:12px}
+
+    main{padding:24px;max-width:800px;margin:0 auto 24px;line-height:1.7;font-size:18px}
+    main p{margin:0 0 16px}
+    .email{display:inline-block;margin-top:10px;padding:8px 12px;border:1px solid rgba(255,255,255,.18);border-radius:8px;cursor:pointer}
+    .email:hover{background:rgba(255,255,255,.08)}
+
+    @media (max-width:540px){
+      .menu-button{padding:20px 24px;min-width:200px}
+      .icon{width:120px}
+      .tab{font-size:22px}
+      .submenu a{font-size:20px;grid-template-columns:36px 1fr}
     }
   </style>
 </head>
 <body>
-    <!-- Menu button -->
-  <div class="launcher">
-    <button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="menuOverlay">
-      <img src="latias_menu.png" alt="Menu" class="icon" />
-    </button>
-  </div>
+  <div class="card">
+    <header>
+      <h1 class="site-title">Mission Statement</h1>
+      <div class="your-name">Lucas Attias</div>
+    </header>
 
-  <!-- Overlay dropdown menu -->
-  <div id="menuOverlay" class="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
-    <div class="overlay-inner">
-      <!-- Your menu tabs go here (About, Projects, Journals, Home, etc) -->
-
- <!-- Home tab -->
-    <a role="menuitem" href="index.html">
-      <span>🏠</span>
-      <span>Home<br><span class="hint">Back to main page</span></span>
-    </a>
-
-    <!-- About tab -->
-    <button class="tab" aria-expanded="false" aria-controls="aboutSub">About <span class="caret"></span></button>
-    <div id="aboutSub" class="submenu" data-open="false">
-      <a role="menuitem" href="/resume.html" target="_blank" rel="noopener">
-        <span>📄</span>
-        <span>Resume<br><span class="hint">Opens PDF</span></span>
-      </a>
-      <a role="menuitem" href="mission.html">
-        <span>✨</span>
-        <span>Mission Statement<br><span class="hint">New page</span></span>
-      </a>
+    <div class="launcher">
+      <button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="menuOverlay">
+        <img src="/latias_menu.png" alt="Menu" class="icon" />
+      </button>
     </div>
 
-    <!-- Projects tab -->
-    <button class="tab" aria-expanded="false" aria-controls="projectsSub">Projects <span class="caret"></span></button>
-    <div id="projectsSub" class="submenu" data-open="false">
-      <a role="menuitem" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
-        <span>💼/span>
-        <span>Portfolio<br><span class="hint">GitHub repos</span></span>
-      </a>
-      <a role="menuitem" href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener">
-        <span>🎮</span>
-        <span>Steam<br><span class="hint">Store page</span></span>
-      </a>
-      <a role="menuitem" href="https://soundcloud.com/rigatoni_od" target="_blank" rel="noopener">
-        <span>🎵</span>
-        <span>Music<br><span class="hint">SoundCloud profile</span></span>
-      </a>
+    <div id="menuOverlay" class="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="overlay-inner">
+        <div class="overlay-header">
+          <h2 class="overlay-title">Browse</h2>
+          <button class="close-btn" id="closeOverlay">Close ✕</button>
+        </div>
+
+        <button class="tab" aria-expanded="false" aria-controls="homeSub">Home <span class="caret" aria-hidden="true"></span></button>
+        <div id="homeSub" class="submenu" data-open="false">
+          <a role="menuitem" href="/"><span>🏠</span><span>Back to Home</span></a>
+        </div>
+
+        <button class="tab" aria-expanded="false" aria-controls="aboutSub">About <span class="caret" aria-hidden="true"></span></button>
+        <div id="aboutSub" class="submenu" data-open="false">
+          <a role="menuitem" href="/resume.html"><span>📄</span><span>Resume</span></a>
+          <a role="menuitem" href="/mission.html"><span>✨</span><span>Mission Statement</span></a>
+        </div>
+
+        <button class="tab" aria-expanded="false" aria-controls="projectsSub">Projects <span class="caret" aria-hidden="true"></span></button>
+        <div id="projectsSub" class="submenu" data-open="false">
+          <a role="menuitem" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener"><span>💼</span><span>Portfolio</span></a>
+          <a role="menuitem" href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener"><span>🎮</span><span>Steam</span></a>
+          <a role="menuitem" href="https://soundcloud.com/rigatoni_od" target="_blank" rel="noopener"><span>🎵</span><span>Music</span></a>
+        </div>
+
+        <button class="tab" aria-expanded="false" aria-controls="journalsSub">Journals <span class="caret" aria-hidden="true"></span></button>
+        <div id="journalsSub" class="submenu" data-open="false">
+          <a role="menuitem" href="/journal.html"><span>📝</span><span>Thoughts and Prayers From 9 Garden North by Lattias</span></a>
+        </div>
+      </div>
     </div>
 
-    <!-- Journals tab -->
-    <button class="tab" aria-expanded="false" aria-controls="journalsSub">Journals <span class="caret"></span></button>
-    <div id="journalsSub" class="submenu" data-open="false">
-      <a role="menuitem" href="/journal.html" target="_blank" rel="noopener">
-        <span>📝</span>
-        <span>Thoughts and Prayers From 9 Garden North<br><span class="hint">Opens PDF</span></span>
-      </a>
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-  <div class="mission">
-    <h1>Personal Statement by Lattias</h1>
-    <p>
-      <!-- Replace this with your actual mission statement text -->
-      
-
+    <main>
+      <!-- Replace with your paragraphs, one <p> per paragraph -->
 “Sunday morning is everyday for all I care.” -Kurt Cobain
     </p>
     
@@ -146,36 +128,22 @@ My purpose is to help people shine when their inner light feels dim. I want to s
 — Lattias <3
     </p>
 
-    <div class="email" id="emailBox">joyboy01223@gmail.com</div>
+      <div class="email" id="emailBox">joyboy01223@gmail.com</div>
+    </main>
   </div>
 
-<script>
-    const menuBtn = document.getElementById('menuButton');
-    const overlay = document.getElementById('menuOverlay');
-    const closeBtn = document.getElementById('closeOverlay');
-    function setOverlay(open){ overlay.setAttribute('data-open', String(open)); menuBtn.setAttribute('aria-expanded', String(open)); document.body.style.overflow = open ? 'hidden' : ''; }
-    menuBtn.addEventListener('click', () => setOverlay(true));
-    closeBtn.addEventListener('click', () => setOverlay(false));
-    overlay.addEventListener('click', (e)=>{ if(e.target===overlay) setOverlay(false); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') setOverlay(false); });
-    document.querySelectorAll('.tab').forEach(tabBtn => { tabBtn.addEventListener('click', () => {
-      const controls = tabBtn.getAttribute('aria-controls'); const panel = document.getElementById(controls); const expanded = tabBtn.getAttribute('aria-expanded') === 'true';
-      document.querySelectorAll('.tab').forEach(b => { if (b!==tabBtn) b.setAttribute('aria-expanded','false'); });
-      document.querySelectorAll('.submenu').forEach(s => { if (s!==panel) s.setAttribute('data-open','false'); });
-      tabBtn.setAttribute('aria-expanded', String(!expanded)); panel.setAttribute('data-open', String(!expanded));
-    });});
-
-    function copyEmail() {
-      navigator.clipboard.writeText("lucas@example.com").then(() => {
-        alert("Email copied to clipboard!");
-      });
-    }
+  <script>
+    const menuBtn=document.getElementById('menuButton');
+    const overlay=document.getElementById('menuOverlay');
+    const closeBtn=document.getElementById('closeOverlay');
+    function setOverlay(open){ overlay.setAttribute('data-open',String(open)); menuBtn.setAttribute('aria-expanded',String(open)); document.body.style.overflow=open?'hidden':'';}
+    menuBtn.addEventListener('click',()=>setOverlay(true));
+    closeBtn.addEventListener('click',()=>setOverlay(false));
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) setOverlay(false); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') setOverlay(false); });
+    document.querySelectorAll('.tab').forEach(tabBtn=>{ tabBtn.addEventListener('click',()=>{ const id=tabBtn.getAttribute('aria-controls'); const panel=document.getElementById(id); const expanded=tabBtn.getAttribute('aria-expanded')==='true'; document.querySelectorAll('.tab').forEach(b=>{ if(b!==tabBtn) b.setAttribute('aria-expanded','false');}); document.querySelectorAll('.submenu').forEach(s=>{ if(s!==panel) s.setAttribute('data-open','false');}); tabBtn.setAttribute('aria-expanded',String(!expanded)); panel.setAttribute('data-open',String(!expanded)); });});
+    const emailBox=document.getElementById('emailBox');
+    if(emailBox){ emailBox.addEventListener('click',()=>{ navigator.clipboard.writeText(emailBox.textContent).then(()=>{ const original=emailBox.textContent; emailBox.textContent='Copied to clipboard!'; setTimeout(()=>emailBox.textContent=original,1800);});});}
   </script>
 </body>
 </html>
-
-
-
-
-
-
