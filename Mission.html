@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mission Statement — Lucas Attias</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial;
+      background: #0b0d12;
+      color: #e7ecf7;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+    .mission {
+      max-width: 800px;
+      background: #121620;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 18px;
+    }
+    .email {
+      text-align: center;
+      margin-top: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 8px;
+      display: inline-block;
+    }
+    .email:hover {
+      background: rgba(255,255,255,0.08);
+    }
+  </style>
+</head>
+<body>
+  <div class="mission">
+    <h1>Mission Statement</h1>
+    <p>
+      <!-- Replace this with your actual mission statement text -->
+      
+
+“Sunday morning is everyday for all I care.” -Kurt Cobain
+
+When I was 19 and began studying at Bucknell University, I started experiencing symptoms of manic depression. Unfamiliar with these feelings, I tried to handle them the only way I knew: by “toughing it out.” I quickly learned that certain activities gave me fleeting relief. In those moments, I found calm, insight, energy, authenticity, and sometimes even likability. Most importantly, I caught glimpses of normalcy. By 21, I was diagnosed with bipolar I disorder.
+
+For the next few years, I met with doctors and therapists I didn’t trust and couldn’t open up to. Eventually, I found my support team. Trusting them was a leap of faith, but together we walked through hell side by side. The medications left me stoic, blunting my emotions until I no longer felt any sense of normalcy.
+
+Nine years later, I realized I could no longer settle for simply existing in that statue-like state. I decided to take back my purpose and become an advocate in my own treatment. The blue-blossom days were behind me, and I finally began confronting the thoughts I had bottled up for too long. Through deep introspection, I found ways to manage my anxiety. For the first time in twenty years, I could think clearly without a nagging inner voice holding me back.
+
+I dove into Freudian concepts, applying theories of the id, ego, and superego to better understand both my conscious and unconscious mind. As a psychology and neuroscience student, I had seen Freud’s iceberg diagram, though professors tended to gloss over his work. But these concepts, overlooked in lectures, became tools that helped save my life.
+
+As I continue to learn more about myself, I’m working to bring my ideas from mind to paper. I’m learning to write and draw as a way to communicate more fully with others. For a long time, I hesitated to share my journals publicly. But recognizing the role they played in my own healing, I hope others can find value in them too. I published them with one simple goal: to connect with someone who may be going through a similar struggle.
+
+My purpose is to help people shine when their inner light feels dim. I want to support others in healing and unlocking potentials they may not see in themselves. Sometimes we just need a small push to look inward and recognize how brightly we can shine. We are all capable of growth and leveling up. If you need support or simply want to connect, reach out. I love to listen.
+
+— Lattias <3
+    </p>
+
+    <div class="email" id="emailBox">joyboy01223@gmail.com</div>
+  </div>
+
+  <script>
+    const emailBox = document.getElementById("emailBox");
+    emailBox.addEventListener("click", () => {
+      navigator.clipboard.writeText(emailBox.textContent).then(() => {
+        emailBox.textContent = "Copied to clipboard!";
+        setTimeout(() => {
+          emailBox.textContent = "joyboy01223@gmail.com"; // reset after 2s
+        }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
