@@ -48,6 +48,19 @@
   </style>
 </head>
 <body>
+    <!-- Menu button -->
+  <div class="launcher">
+    <button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="menuOverlay">
+      <img src="latias_menu.png" alt="Menu" class="icon" />
+    </button>
+  </div>
+
+  <!-- Overlay dropdown menu -->
+  <div id="menuOverlay" class="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="overlay-inner">
+      <!-- Your menu tabs go here (About, Projects, Journals, Home, etc) -->
+    </div>
+  </div>
   <div class="mission">
     <h1>Personal Statement by Lattias</h1>
     <p>
@@ -88,19 +101,31 @@ My purpose is to help people shine when their inner light feels dim. I want to s
     <div class="email" id="emailBox">joyboy01223@gmail.com</div>
   </div>
 
-  <script>
-    const emailBox = document.getElementById("emailBox");
-    emailBox.addEventListener("click", () => {
-      navigator.clipboard.writeText(emailBox.textContent).then(() => {
-        emailBox.textContent = "Copied to clipboard!";
-        setTimeout(() => {
-          emailBox.textContent = "joyboy01223@gmail.com"; // reset after 2s
-        }, 2000);
+<script>
+    const menuBtn = document.getElementById('menuButton');
+    const overlay = document.getElementById('menuOverlay');
+    const closeBtn = document.getElementById('closeOverlay');
+    function setOverlay(open){ overlay.setAttribute('data-open', String(open)); menuBtn.setAttribute('aria-expanded', String(open)); document.body.style.overflow = open ? 'hidden' : ''; }
+    menuBtn.addEventListener('click', () => setOverlay(true));
+    closeBtn.addEventListener('click', () => setOverlay(false));
+    overlay.addEventListener('click', (e)=>{ if(e.target===overlay) setOverlay(false); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') setOverlay(false); });
+    document.querySelectorAll('.tab').forEach(tabBtn => { tabBtn.addEventListener('click', () => {
+      const controls = tabBtn.getAttribute('aria-controls'); const panel = document.getElementById(controls); const expanded = tabBtn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.tab').forEach(b => { if (b!==tabBtn) b.setAttribute('aria-expanded','false'); });
+      document.querySelectorAll('.submenu').forEach(s => { if (s!==panel) s.setAttribute('data-open','false'); });
+      tabBtn.setAttribute('aria-expanded', String(!expanded)); panel.setAttribute('data-open', String(!expanded));
+    });});
+
+    function copyEmail() {
+      navigator.clipboard.writeText("lucas@example.com").then(() => {
+        alert("Email copied to clipboard!");
       });
-    });
+    }
   </script>
 </body>
 </html>
+
 
 
 
