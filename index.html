@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Open Graph -->
-  <meta property="og:title" content="A Wild Latias Appeared — Lucas Attias">
+  <meta property="og:title" content="Wild Latias Appeared — Lucas Attias">
   <meta property="og:description" content="Portfolio site of Lucas Attias featuring projects, game development, data science work, and creative experiments bridging analytics, psychology, and design.">
   <meta property="og:image" content="https://lucasattias.com/LatiasPNG.png">
   <meta property="og:url" content="https://lucasattias.com">
@@ -280,6 +280,10 @@
       font-size:12px;
     }
 
+    body.menu-open #menuButton{
+      display:none;
+    }
+
     @media (max-width:540px){
       body{ padding:8px; }
       .card{ border-radius:14px; }
@@ -303,7 +307,8 @@
         id="menuButton"
         class="menu-button"
         aria-expanded="false"
-        aria-controls="menuOverlay">
+        aria-controls="menuOverlay"
+        onclick="setOverlay(true)">
         <span class="hamburger"></span>
       </button>
     </div>
@@ -356,28 +361,21 @@
   const overlay = document.getElementById('menuOverlay');
   const closeBtn = document.getElementById('closeOverlay');
 
-    function setOverlay(open){
-      overlay.setAttribute('data-open', String(open));
-      menuBtn.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-      document.body.classList.toggle('menu-open', open);
-    }
-
-    if(open){
-      menuBtn.style.display = "none";
-    } else {
-      menuBtn.style.display = "flex";
-    }
+  function setOverlay(open){
+    overlay.setAttribute('data-open', String(open));
+    menuBtn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    document.body.classList.toggle('menu-open', open);
   }
 
   function resetMenuState() {
     setOverlay(false);
 
-    document.querySelectorAll('.tab[aria-controls]').forEach(btn => {
+    document.querySelectorAll('.tab[aria-controls]').forEach(function(btn) {
       btn.setAttribute('aria-expanded', 'false');
     });
 
-    document.querySelectorAll('.submenu').forEach(submenu => {
+    document.querySelectorAll('.submenu').forEach(function(submenu) {
       submenu.setAttribute('data-open', 'false');
     });
   }
@@ -387,13 +385,13 @@
     const panel = document.getElementById(controls);
     const expanded = button.getAttribute('aria-expanded') === 'true';
 
-    document.querySelectorAll('.tab[aria-controls]').forEach(btn => {
+    document.querySelectorAll('.tab[aria-controls]').forEach(function(btn) {
       if (btn !== button) {
         btn.setAttribute('aria-expanded', 'false');
       }
     });
 
-    document.querySelectorAll('.submenu').forEach(submenu => {
+    document.querySelectorAll('.submenu').forEach(function(submenu) {
       if (submenu !== panel) {
         submenu.setAttribute('data-open', 'false');
       }
@@ -410,12 +408,7 @@
     setOverlay(true);
   });
 
-  menuBtn.addEventListener('pointerup', function(e) {
-    e.preventDefault();
-    setOverlay(true);
-  });
-
-  menuBtn.addEventListener('touchend', function(e) {
+  menuBtn.addEventListener('touchstart', function(e) {
     e.preventDefault();
     setOverlay(true);
   }, { passive: false });
@@ -425,12 +418,7 @@
     setOverlay(false);
   });
 
-  closeBtn.addEventListener('pointerup', function(e) {
-    e.preventDefault();
-    setOverlay(false);
-  });
-
-  closeBtn.addEventListener('touchend', function(e) {
+  closeBtn.addEventListener('touchstart', function(e) {
     e.preventDefault();
     setOverlay(false);
   }, { passive: false });
@@ -449,11 +437,6 @@
 
   window.addEventListener('load', resetMenuState);
   window.addEventListener('pageshow', resetMenuState);
-  document.addEventListener('visibilitychange', function() {
-    if (!document.hidden) {
-      resetMenuState();
-    }
-  });
 </script>
 
 </body>
