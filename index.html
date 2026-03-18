@@ -286,10 +286,6 @@
       font-size:12px;
     }
 
-    body.menu-open #menuButton{
-      display:none;
-    }
-
     @media (max-width:540px){
       body{
         padding:8px;
@@ -343,7 +339,8 @@
     class="overlay"
     role="dialog"
     aria-modal="true"
-    aria-label="Site menu">
+    aria-label="Site menu"
+    aria-hidden="true">
     <div class="overlay-inner">
       <div class="overlay-header">
         <h2 class="overlay-title">Browse</h2>
@@ -385,76 +382,108 @@
   </div>
 
   <script>
-    const menuBtn = document.getElementById('menuButton');
-    const overlay = document.getElementById('menuOverlay');
-    const closeBtn = document.getElementById('closeOverlay');
-    const projectsToggle = document.getElementById('projectsToggle');
+    function initMenu() {
+      const menuBtn = document.getElementById('menuButton');
+      const overlay = document.getElementById('menuOverlay');
+      const closeBtn = document.getElementById('closeOverlay');
+      const projectsToggle = document.getElementById('projectsToggle');
 
-    function setOverlay(open) {
-      overlay.classList.toggle('is-open', open);
-      menuBtn.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-      document.body.classList.toggle('menu-open', open);
+      if (!menuBtn || !overlay || !closeBtn || !projectsToggle) {
+        return;
+      }
 
-      if (!open) {
-        document.querySelectorAll('.tab[aria-controls]').forEach(function(button) {
-          button.setAttribute('aria-expanded', 'false');
+      function setOverlay(open) {
+        overlay.classList.toggle('is-open', open);
+        overlay.setAttribute('aria-hidden', String(!open));
+        menuBtn.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+
+        if (!open) {
+          document.querySelectorAll('.tab[aria-controls]').forEach(function(button) {
+            button.setAttribute('aria-expanded', 'false');
+          });
+
+          document.querySelectorAll('.submenu').forEach(function(submenu) {
+            submenu.setAttribute('data-open', 'false');
+          });
+        }
+      }
+
+      function toggleSubmenu(button) {
+        const controls = button.getAttribute('aria-controls');
+        const panel = document.getElementById(controls);
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+
+        document.querySelectorAll('.tab[aria-controls]').forEach(function(otherButton) {
+          if (otherButton !== button) {
+            otherButton.setAttribute('aria-expanded', 'false');
+          }
         });
 
         document.querySelectorAll('.submenu').forEach(function(submenu) {
-          submenu.setAttribute('data-open', 'false');
+          if (submenu !== panel) {
+            submenu.setAttribute('data-open', 'false');
+          }
         });
-      }
-    }
 
-    function toggleSubmenu(button) {
-      const controls = button.getAttribute('aria-controls');
-      const panel = document.getElementById(controls);
-      const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!expanded));
 
-      document.querySelectorAll('.tab[aria-controls]').forEach(function(otherButton) {
-        if (otherButton !== button) {
-          otherButton.setAttribute('aria-expanded', 'false');
+        if (panel) {
+          panel.setAttribute('data-open', String(!expanded));
         }
-      });
+      }
 
-      document.querySelectorAll('.submenu').forEach(function(submenu) {
-        if (submenu !== panel) {
-          submenu.setAttribute('data-open', 'false');
+      function closeOverlayBackground(event) {
+        if (event.target === overlay) {
+          setOverlay(false);
         }
-      });
-
-      button.setAttribute('aria-expanded', String(!expanded));
-
-      if (panel) {
-        panel.setAttribute('data-open', String(!expanded));
       }
-    }
 
-    function closeOverlayBackground(event) {
-      if (event.target === overlay) {
-        setOverlay(false);
-      }
-    }
-
-    menuBtn.addEventListener('click', function() {
-      const isOpen = overlay.classList.contains('is-open');
-      setOverlay(!isOpen);
-    });
-
-    closeBtn.addEventListener('click', function() {
       setOverlay(false);
-    });
 
-    projectsToggle.addEventListener('click', function() {
-      toggleSubmenu(projectsToggle);
-    });
+      if (!menuBtn.dataset.bound) {
+        menuBtn.addEventListener('click', function() {
+          const isOpen = overlay.classList.contains('is-open');
+          setOverlay(!isOpen);
+        });
+        menuBtn.dataset.bound = 'true';
+      }
 
-    overlay.addEventListener('click', closeOverlayBackground);
+      if (!closeBtn.dataset.bound) {
+        closeBtn.addEventListener('click', function() {
+          setOverlay(false);
+        });
+        closeBtn.dataset.bound = 'true';
+      }
 
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        setOverlay(false);
+      if (!projectsToggle.dataset.bound) {
+        projectsToggle.addEventListener('click', function() {
+          toggleSubmenu(projectsToggle);
+        });
+        projectsToggle.dataset.bound = 'true';
+      }
+
+      if (!overlay.dataset.bound) {
+        overlay.addEventListener('click', closeOverlayBackground);
+        overlay.dataset.bound = 'true';
+      }
+
+      if (!document.documentElement.dataset.menuKeyBound) {
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+            setOverlay(false);
+          }
+        });
+        document.documentElement.dataset.menuKeyBound = 'true';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initMenu);
+    window.addEventListener('pageshow', initMenu);
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'visible') {
+        initMenu();
       }
     });
   </script>
