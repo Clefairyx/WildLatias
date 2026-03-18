@@ -70,6 +70,8 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
+      position:relative;
+      z-index:3;
     }
 
     .site-title{
@@ -90,7 +92,9 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      padding:12px 12px 6px;
+      padding:12px 12px 16px;
+      position:relative;
+      z-index:3;
     }
 
     .menu-button{
@@ -107,6 +111,8 @@
       touch-action:manipulation;
       -webkit-tap-highlight-color:transparent;
       user-select:none;
+      position:relative;
+      z-index:4;
     }
 
     .menu-button:hover{
@@ -146,23 +152,73 @@
       top:8px;
     }
 
-    .inline-menu-wrap{
-      padding:0 16px 16px;
+    .content-stage{
+      position:relative;
+      width:100%;
     }
 
-    .inline-menu{
-      display:none;
-      width:min(720px,100%);
+    .hero-wrap{
+      position:relative;
+      width:100%;
+      overflow:hidden;
+    }
+
+    .hero{
+      display:block;
+      width:100%;
+      max-width:100%;
+      height:auto;
       margin:0 auto;
-      background:var(--panel-2);
+      object-fit:contain;
+      object-position:center;
+      background:#0b0d12;
+      border:0;
+      padding:0;
+      transition:filter .22s ease, transform .22s ease, opacity .22s ease;
+    }
+
+    .hero.is-blurred{
+      filter:blur(8px) brightness(.45);
+      transform:scale(1.02);
+    }
+
+    .hero-dim{
+      position:absolute;
+      inset:0;
+      background:rgba(11,13,18,.18);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .22s ease;
+    }
+
+    .hero-dim.is-active{
+      opacity:1;
+    }
+
+    .floating-menu{
+      position:absolute;
+      left:50%;
+      top:12px;
+      transform:translateX(-50%);
+      width:min(720px,calc(100% - 24px));
+      background:rgba(27,33,48,.94);
       border:1px solid rgba(255,255,255,.12);
       border-radius:16px;
-      box-shadow:0 16px 40px rgba(0,0,0,.4);
+      box-shadow:0 20px 60px rgba(0,0,0,.5);
       padding:10px;
+      z-index:5;
+
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .2s ease, visibility .2s ease, transform .2s ease;
     }
 
-    .inline-menu.is-open{
-      display:block;
+    .floating-menu.is-open{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateX(-50%) translateY(0);
     }
 
     .menu-header{
@@ -263,19 +319,6 @@
       font-size:12px;
     }
 
-    .hero{
-      display:block;
-      width:100%;
-      max-width:100%;
-      height:auto;
-      margin:0 auto;
-      object-fit:contain;
-      object-position:center;
-      background:#0b0d12;
-      border:0;
-      padding:0;
-    }
-
     @media (max-width:540px){
       body{
         padding:8px;
@@ -283,6 +326,11 @@
 
       .card{
         border-radius:14px;
+      }
+
+      .floating-menu{
+        width:calc(100% - 16px);
+        top:8px;
       }
 
       .tab{
@@ -311,19 +359,18 @@
         id="menuButton"
         class="menu-button"
         aria-expanded="false"
-        aria-controls="inlineMenu"
+        aria-controls="floatingMenu"
         aria-label="Open menu">
         <span class="hamburger"></span>
       </button>
     </div>
 
-    <div class="inline-menu-wrap">
-      <nav
-        id="inlineMenu"
-        class="inline-menu"
+    <div class="content-stage">
+      <div
+        id="floatingMenu"
+        class="floating-menu"
         aria-label="Site menu"
         aria-hidden="true">
-
         <div class="menu-header">
           <h2 class="menu-title">Browse</h2>
           <button
@@ -360,28 +407,35 @@
             <span>JungleBoys on Steam<br><span class="hint">Store page</span></span>
           </a>
         </div>
-      </nav>
-    </div>
+      </div>
 
-    <img class="hero" src="LatiasPNG.png" alt="Main page image">
+      <div class="hero-wrap">
+        <img id="heroImage" class="hero" src="LatiasPNG.png" alt="Main page image">
+        <div id="heroDim" class="hero-dim" aria-hidden="true"></div>
+      </div>
+    </div>
   </div>
 
   <script>
     (function () {
       const menuBtn = document.getElementById('menuButton');
-      const inlineMenu = document.getElementById('inlineMenu');
+      const floatingMenu = document.getElementById('floatingMenu');
       const closeMenuButton = document.getElementById('closeMenuButton');
       const projectsToggle = document.getElementById('projectsToggle');
       const projectsSub = document.getElementById('projectsSub');
+      const heroImage = document.getElementById('heroImage');
+      const heroDim = document.getElementById('heroDim');
 
-      if (!menuBtn || !inlineMenu || !closeMenuButton || !projectsToggle || !projectsSub) {
+      if (!menuBtn || !floatingMenu || !closeMenuButton || !projectsToggle || !projectsSub || !heroImage || !heroDim) {
         return;
       }
 
       function setMenuOpen(open) {
-        inlineMenu.classList.toggle('is-open', open);
-        inlineMenu.setAttribute('aria-hidden', String(!open));
+        floatingMenu.classList.toggle('is-open', open);
+        floatingMenu.setAttribute('aria-hidden', String(!open));
         menuBtn.setAttribute('aria-expanded', String(open));
+        heroImage.classList.toggle('is-blurred', open);
+        heroDim.classList.toggle('is-active', open);
 
         if (!open) {
           projectsToggle.setAttribute('aria-expanded', 'false');
@@ -396,7 +450,7 @@
       }
 
       menuBtn.addEventListener('click', function () {
-        const isOpen = inlineMenu.classList.contains('is-open');
+        const isOpen = floatingMenu.classList.contains('is-open');
         setMenuOpen(!isOpen);
       });
 
