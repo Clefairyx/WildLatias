@@ -338,9 +338,11 @@ menuBtn.setAttribute('aria-expanded',String(open));
 document.body.style.overflow=open?'hidden':'';
 }
 
-menuBtn.addEventListener('click',()=>setOverlay(true));
-closeBtn.addEventListener('click',()=>setOverlay(false));
-
+menuBtn.addEventListener('click', () => setOverlay(true));
+menuBtn.addEventListener('touchstart', () => setOverlay(true));
+closeBtn.addEventListener('click', () => setOverlay(false));
+closeBtn.addEventListener('touchstart', () => setOverlay(false));
+  
 overlay.addEventListener('click',e=>{
 if(e.target===overlay) setOverlay(false);
 });
