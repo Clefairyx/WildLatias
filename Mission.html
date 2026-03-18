@@ -260,7 +260,7 @@ main p{
 </header>
 
 <div class="launcher">
-<button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="menuOverlay">
+<button type="button" id="menuButton" class="menu-button" aria-expanded="false" aria-controls="menuOverlay">
 <span class="hamburger"></span>
 </button>
 </div>
@@ -278,7 +278,7 @@ main p{
 
 <a class="tab" href="/Mission.html">About</a>
 
-<button class="tab" aria-expanded="false" aria-controls="projectsSub">
+<button type="button" class="tab" aria-expanded="false" aria-controls="projectsSub">
 Projects <span class="caret"></span>
 </button>
 
@@ -327,9 +327,11 @@ menuBtn.setAttribute('aria-expanded',String(open));
 document.body.style.overflow=open?'hidden':'';
 }
 
-menuBtn.addEventListener('click',()=>setOverlay(true));
-closeBtn.addEventListener('click',()=>setOverlay(false));
-
+menuBtn.addEventListener('click', () => setOverlay(true));
+menuBtn.addEventListener('touchstart', () => setOverlay(true));
+closeBtn.addEventListener('click', () => setOverlay(false));
+closeBtn.addEventListener('touchstart', () => setOverlay(false));
+  
 overlay.addEventListener('click',e=>{
 if(e.target===overlay) setOverlay(false);
 });
