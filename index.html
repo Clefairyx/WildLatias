@@ -42,7 +42,7 @@
     body{
       margin:0;
       padding:20px;
-      min-height:100svh;
+      min-height:100dvh;
       display:grid;
       place-items:center;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -154,15 +154,25 @@
     .overlay{
       position:fixed;
       inset:0;
-      display:none;
       z-index:99999;
       background:rgba(13,17,26,.98);
       padding:16px;
+      min-height:100dvh;
+
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+
+    .overlay.is-open{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
     }
 
     .overlay-inner{
       width:min(720px,100%);
-      margin:8vh auto 0;
+      margin:8dvh auto 0;
       background:var(--panel-2);
       border:1px solid rgba(255,255,255,.12);
       border-radius:16px;
@@ -301,8 +311,7 @@
         id="menuButton"
         class="menu-button"
         aria-expanded="false"
-        aria-controls="menuOverlay"
-        onclick="setOverlay(true)">
+        aria-controls="menuOverlay">
         <span class="hamburger"></span>
       </button>
     </div>
@@ -315,16 +324,14 @@
     class="overlay"
     role="dialog"
     aria-modal="true"
-    aria-label="Site menu"
-    onclick="closeOverlayBackground(event)">
+    aria-label="Site menu">
     <div class="overlay-inner">
       <div class="overlay-header">
         <h2 class="overlay-title">Browse</h2>
         <button
           type="button"
           class="close-btn"
-          id="closeOverlay"
-          onclick="setOverlay(false)">
+          id="closeOverlay">
           Close ✕
         </button>
       </div>
@@ -337,8 +344,7 @@
         type="button"
         class="tab"
         aria-expanded="false"
-        aria-controls="projectsSub"
-        onclick="toggleSubmenu(this)">
+        aria-controls="projectsSub">
         Projects <span class="caret" aria-hidden="true"></span>
       </button>
 
@@ -359,6 +365,8 @@
   <script>
     const menuBtn = document.getElementById('menuButton');
     const overlay = document.getElementById('menuOverlay');
+    const closeBtn = document.getElementById('closeOverlay');
+    const projectsToggle = document.getElementById('projectsToggle');
 
     function setOverlay(open) {
       overlay.style.display = open ? 'block' : 'none';
@@ -367,6 +375,9 @@
       document.body.style.overflow = open ? 'hidden' : '';
       document.body.classList.toggle('menu-open', open);
 
+      if (open) {
+        overlay.offsetHeight;
+      }
       if (!open) {
         document.querySelectorAll('.tab[aria-controls]').forEach(function(btn) {
           btn.setAttribute('aria-expanded', 'false');
@@ -407,9 +418,6 @@
       }
     }
 
-    function resetMenuState() {
-      setOverlay(false);
-    }
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
@@ -417,8 +425,6 @@
       }
     });
 
-    window.addEventListener('load', resetMenuState);
-    window.addEventListener('pageshow', resetMenuState);
   </script>
 
 </body>
