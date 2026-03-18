@@ -138,43 +138,33 @@
       </div>
 
 
-      <!-- Home -->
-      <button class="tab" aria-expanded="false" aria-controls="homeSub">
-        Home <span class="caret" aria-hidden="true"></span>
-      </button>
-      <div id="homeSub" class="submenu" data-open="false">
-        <a role="menuitem" href="/">
-          <span>🏠</span>
-          <span>Back to Home</span>
-        </a>
-      </div>
+     <!-- Home (direct link) -->
+<a class="tab" href="/">
+  Home
+</a>
 
-      <!-- About -->
-      <button class="tab" aria-expanded="false" aria-controls="AboutSub">
-        Home <span class="caret" aria-hidden="true"></span>
-      </button>
-      <div id="homeSub" class="submenu" data-open="false">
-        <a role="menuitem" href="/Mission.html">
-          <span>✨</span>
-          <span>About<br><span class="hint">by Lattias</span></span>
-        </a>
-      </div>
+<!-- Mission (direct link) -->
+<a class="tab" href="/Mission.html">
+  Mission
+</a>
 
-      <!-- Projects -->
-      <button class="tab" aria-expanded="false" aria-controls="projectsSub">Projects <span class="caret" aria-hidden="true"></span></button>
-      <div id="projectsSub" class="submenu" data-open="false">
-        <a role="menuitem" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
-          <span>💼</span>
-          <span>Portfolio<br><span class="hint">GitHub repositories</span></span>
-        </a>
-        <a role="menuitem" href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener">
-          <span>🎮</span>
-          <span>JungleBoys on Steam<br><span class="hint">Store page</span></span>
-        </a>
-      </div>
-    </div>
-  </div>
+<!-- Projects -->
+<button class="tab" aria-expanded="false" aria-controls="projectsSub">
+  Projects <span class="caret" aria-hidden="true"></span>
+</button>
 
+<div id="projectsSub" class="submenu" data-open="false">
+  <a role="menuitem" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
+    <span>💼</span>
+    <span>Portfolio<br><span class="hint">GitHub repositories</span></span>
+  </a>
+
+  <a role="menuitem" href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener">
+    <span>🎮</span>
+    <span>JungleBoys on Steam<br><span class="hint">Store page</span></span>
+  </a>
+</div>
+      
   <script>
     const menuBtn = document.getElementById('menuButton');
     const overlay = document.getElementById('menuOverlay');
