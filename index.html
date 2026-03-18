@@ -297,8 +297,7 @@
         id="menuButton"
         class="menu-button"
         aria-expanded="false"
-        aria-controls="menuOverlay"
-        onclick="setOverlay(true)">
+        aria-controls="menuOverlay">
         <span class="hamburger"></span>
       </button>
     </div>
@@ -346,78 +345,103 @@
     </div>
   </div>
 
-  <script>
-    const menuBtn = document.getElementById('menuButton');
-    const overlay = document.getElementById('menuOverlay');
-    const closeBtn = document.getElementById('closeOverlay');
+<script>
+  const menuBtn = document.getElementById('menuButton');
+  const overlay = document.getElementById('menuOverlay');
+  const closeBtn = document.getElementById('closeOverlay');
 
-    function setOverlay(open) {
-      overlay.setAttribute('data-open', String(open));
-      menuBtn.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
+  function setOverlay(open) {
+    overlay.setAttribute('data-open', String(open));
+    menuBtn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    document.body.classList.toggle('menu-open', open);
+  }
+
+  function resetMenuState() {
+    setOverlay(false);
+
+    document.querySelectorAll('.tab[aria-controls]').forEach(btn => {
+      btn.setAttribute('aria-expanded', 'false');
+    });
+
+    document.querySelectorAll('.submenu').forEach(submenu => {
+      submenu.setAttribute('data-open', 'false');
+    });
+  }
+
+  function toggleSubmenu(button) {
+    const controls = button.getAttribute('aria-controls');
+    const panel = document.getElementById(controls);
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+
+    document.querySelectorAll('.tab[aria-controls]').forEach(btn => {
+      if (btn !== button) {
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.querySelectorAll('.submenu').forEach(submenu => {
+      if (submenu !== panel) {
+        submenu.setAttribute('data-open', 'false');
+      }
+    });
+
+    button.setAttribute('aria-expanded', String(!expanded));
+    if (panel) {
+      panel.setAttribute('data-open', String(!expanded));
     }
+  }
 
-    function toggleSubmenu(button) {
-      const controls = button.getAttribute('aria-controls');
-      const panel = document.getElementById(controls);
-      const expanded = button.getAttribute('aria-expanded') === 'true';
+  menuBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    setOverlay(true);
+  });
 
-      document.querySelectorAll('.tab[aria-controls]').forEach(btn => {
-        if (btn !== button) {
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      });
+  menuBtn.addEventListener('pointerup', function(e) {
+    e.preventDefault();
+    setOverlay(true);
+  });
 
-      document.querySelectorAll('.submenu').forEach(submenu => {
-        if (submenu !== panel) {
-          submenu.setAttribute('data-open', 'false');
-        }
-      });
+  menuBtn.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    setOverlay(true);
+  }, { passive: false });
 
-      button.setAttribute('aria-expanded', String(!expanded));
-      if (panel) {
-        panel.setAttribute('data-open', String(!expanded));
-      }
+  closeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    setOverlay(false);
+  });
+
+  closeBtn.addEventListener('pointerup', function(e) {
+    e.preventDefault();
+    setOverlay(false);
+  });
+
+  closeBtn.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    setOverlay(false);
+  }, { passive: false });
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      setOverlay(false);
     }
+  });
 
-    menuBtn.addEventListener('pointerup', function(e) {
-      e.preventDefault();
-      setOverlay(true);
-    });
-
-    menuBtn.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      setOverlay(true);
-    }, { passive: false });
-
-    closeBtn.addEventListener('pointerup', function(e) {
-      e.preventDefault();
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
       setOverlay(false);
-    });
+    }
+  });
 
-    closeBtn.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      setOverlay(false);
-    }, { passive: false });
-
-    overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) {
-        setOverlay(false);
-      }
-    });
-
-    overlay.addEventListener('touchend', function(e) {
-      if (e.target === overlay) {
-        setOverlay(false);
-      }
-    }, { passive: true });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        setOverlay(false);
-      }
-    });
-  </script>
+  window.addEventListener('load', resetMenuState);
+  window.addEventListener('pageshow', resetMenuState);
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+      resetMenuState();
+    }
+  });
+</script>
 
 </body>
 </html>
