@@ -350,11 +350,16 @@
   const overlay = document.getElementById('menuOverlay');
   const closeBtn = document.getElementById('closeOverlay');
 
-  function setOverlay(open) {
+  function setOverlay(open){
     overlay.setAttribute('data-open', String(open));
     menuBtn.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
-    document.body.classList.toggle('menu-open', open);
+
+    if(open){
+      menuBtn.style.display = "none";
+    } else {
+      menuBtn.style.display = "flex";
+    }
   }
 
   function resetMenuState() {
