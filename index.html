@@ -1,377 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="description" content="Portfolio, Steam game, music projects, and journal by Lucas Attias.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="A Wild Latias Appeared — Lucas Attias">
+  <meta property="og:description" content="Portfolio site of Lucas Attias featuring projects, game development, data science work, and creative experiments bridging analytics, psychology, and design.">
+  <meta property="og:image" content="https://lucasattias.com/LatiasPNG.png">
+  <meta property="og:url" content="https://lucasattias.com">
+  <meta property="og:type" content="website">
 
-<meta property="og:title" content="A Wild Latias Appeared — Lucas Attias">
+  <meta name="description" content="Portfolio, Steam game, music projects, and journal by Lucas Attias.">
 
-<meta property="og:description" content="Portfolio site of Lucas Attias featuring projects, game development, data science work, and creative experiments bridging analytics, psychology, and design.">
-
-<meta property="og:image" content="https://lucasattias.com/LatiasPNG.png">
-
-<meta property="og:url" content="https://lucasattias.com">
-
-<meta property="og:type" content="website">
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QP3Y2F1XKV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QP3Y2F1XKV');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QP3Y2F1XKV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QP3Y2F1XKV');
+  </script>
 
-<link rel="icon" href="favicon.png" type="image/png">
+  <link rel="icon" href="favicon.png" type="image/png">
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Wild Latias Appeared — Lucas Attias</title>
-<meta name="description" content="Portfolio, Steam game, music projects, and journal by Lucas Attias." />
+  <title>Wild Latias Appeared — Lucas Attias</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-<style>
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --fg:#e7ecf7;
+      --muted:#a7b0c0;
+      --panel:#121620;
+      --panel-2:#1b2130;
+      --ring:rgba(124,156,255,.5);
+    }
 
-:root{
---bg:#0b0d12;
---fg:#e7ecf7;
---muted:#a7b0c0;
---panel:#121620;
---panel-2:#1b2130;
---ring:rgba(124,156,255,.5);
-}
+    *{box-sizing:border-box}
 
-*{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:var(--fg);
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      padding:20px;
+    }
 
-body{
-margin:0;
-font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-background:var(--bg);
-color:var(--fg);
-min-height:100svh;
-display:grid;
-place-items:center;
-padding:20px;
-}
+    .card{
+      width:min(900px,100%);
+      margin:0 auto;
+      background:var(--panel);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
+    }
 
-.card{
-width:min(900px,100%);
-margin:0 auto;
-background:var(--panel);
-border:1px solid rgba(255,255,255,.08);
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 20px 60px rgba(0,0,0,.45)
-}
+    header{
+      padding:24px 24px 8px;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
 
-header{
-padding:24px 24px 8px;
-text-align:center;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center
-}
+    .site-title{
+      margin:0;
+      font-size:clamp(28px,4vw,36px);
+      font-weight:800;
+      letter-spacing:.3px;
+      font-family:monospace;
+    }
 
-.site-title{
-margin:0;
-font-size:clamp(28px,4vw,36px);
-font-weight:800;
-letter-spacing:.3px;
-font-family: monospace;
-}
+    .your-name{
+      margin:8px 0 20px 0;
+      color:var(--muted);
+      font-weight:600;
+    }
 
-.your-name{
-margin:8px 0 20px 0;
-color:var(--muted);
-font-weight:600
-}
+    .launcher{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:12px;
+    }
 
-/* MENU BUTTON */
+    .menu-button{
+      width:68px;
+      height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--panel-2);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:12px;
+      cursor:pointer;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
+      user-select:none;
+      position:relative;
+      z-index:60;
+    }
 
-.launcher{
-display:flex;
-justify-content:center;
-align-items:center;
-padding:12px
-}
+    .menu-button:hover{
+      background:#222838;
+    }
 
-.menu-button{
-width:60px;
-height:50px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:var(--panel-2);
-border:1px solid rgba(255,255,255,.14);
-border-radius:12px;
-cursor:pointer;
-box-shadow:0 6px 16px rgba(0,0,0,.35)
-}
+    .menu-button:focus-visible{
+      outline:2px solid var(--ring);
+      outline-offset:4px;
+    }
 
-.menu-button:hover{
-background:#222838
-}
+    .hamburger{
+      width:28px;
+      height:3px;
+      background:var(--fg);
+      position:relative;
+      border-radius:2px;
+      pointer-events:none;
+    }
 
-.menu-button:focus-visible{
-outline:2px solid var(--ring);
-outline-offset:4px
-}
+    .hamburger::before,
+    .hamburger::after{
+      content:"";
+      position:absolute;
+      width:28px;
+      height:3px;
+      background:var(--fg);
+      left:0;
+      border-radius:2px;
+    }
 
-/* HAMBURGER ICON */
+    .hamburger::before{ top:-8px; }
+    .hamburger::after{ top:8px; }
 
-.hamburger{
-width:28px;
-height:3px;
-background:var(--fg);
-position:relative;
-border-radius:2px;
-}
+    .hero{
+      display:block;
+      max-width:100%;
+      height:auto;
+      margin:0 auto;
+      object-fit:contain;
+      object-position:center;
+      background-color:#0b0d12;
+      border:0;
+      padding:0;
+    }
 
-.hamburger::before,
-.hamburger::after{
-content:"";
-position:absolute;
-width:28px;
-height:3px;
-background:var(--fg);
-left:0;
-border-radius:2px;
-}
+    .overlay{
+      position:fixed;
+      inset:0;
+      display:none;
+      z-index:50;
+      background:#0d111a;
+      padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
 
-.hamburger::before{top:-8px;}
-.hamburger::after{top:8px;}
+    .overlay[data-open="true"]{
+      display:block;
+    }
 
-/* MAIN IMAGE */
+    .overlay-inner{
+      max-width:720px;
+      margin:10vh auto;
+      background:var(--panel-2);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      box-shadow:0 25px 80px rgba(0,0,0,.6);
+      padding:10px;
+    }
 
-.hero{
-display:block;
-max-width:100%;
-height:auto;
-margin:0 auto;
-object-fit:contain;
-object-position:center;
-background-color:#0b0d12;
-border:0;
-padding:0;
-}
+    .overlay-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:6px 8px 0 8px;
+    }
 
-/* OVERLAY MENU */
+    .overlay-title{
+      margin:0 0 4px 8px;
+      font-size:18px;
+      color:var(--muted);
+    }
 
-.overlay{
-position:fixed;
-inset:0;
-display:none;
-z-index:50;
-background:#0d111a
-}
+    .close-btn{
+      background:transparent;
+      border:1px solid rgba(255,255,255,.18);
+      color:var(--fg);
+      border-radius:10px;
+      padding:10px 12px;
+      cursor:pointer;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
+    }
 
-.overlay[data-open="true"]{
-display:block
-}
+    .close-btn:hover{
+      background:rgba(255,255,255,.08);
+    }
 
-.overlay-inner{
-max-width:720px;
-margin:10vh auto;
-background:var(--panel-2);
-border:1px solid rgba(255,255,255,.12);
-border-radius:16px;
-box-shadow:0 25px 80px rgba(0,0,0,.6);
-padding:10px
-}
+    .tab{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:18px 20px;
+      background:transparent;
+      color:var(--fg);
+      border:0;
+      border-radius:15px;
+      font-weight:700;
+      font-size:36px;
+      cursor:pointer;
+      text-decoration:none;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
+    }
 
-.overlay-header{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:6px 8px 0 8px
-}
+    .tab:hover,
+    .tab:focus-visible{
+      background:rgba(255,255,255,.08);
+      outline:none;
+    }
 
-.overlay-title{
-margin:0 0 4px 8px;
-font-size:18px;
-color:var(--muted)
-}
+    .caret{
+      width:10px;
+      height:10px;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(-45deg);
+      transition:transform .18s ease;
+      opacity:.85;
+      pointer-events:none;
+    }
 
-.close-btn{
-background:transparent;
-border:1px solid rgba(255,255,255,.18);
-color:var(--fg);
-border-radius:10px;
-padding:8px 10px;
-cursor:pointer
-}
+    .tab[aria-expanded="true"] .caret{
+      transform:rotate(45deg);
+    }
 
-.close-btn:hover{
-background:rgba(255,255,255,.08)
-}
+    .submenu{
+      display:none;
+      padding:6px 8px 12px 8px;
+    }
 
-.tab{
-width:100%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-padding:18px 20px;
-background:transparent;
-color:var(--fg);
-border:0;
-border-radius:15px;
-font-weight:700;
-font-size:36px;
-cursor:pointer;
-text-decoration:none
-}
+    .submenu[data-open="true"]{
+      display:block;
+    }
 
-.tab:hover{
-background:rgba(255,255,255,.08)
-}
+    .submenu a{
+      display:grid;
+      grid-template-columns:22px 1fr;
+      align-items:center;
+      gap:10px;
+      padding:14px;
+      color:var(--fg);
+      text-decoration:none;
+      border-radius:8px;
+      font-size:18px;
+    }
 
-.caret{
-width:10px;
-height:10px;
-border-right:2px solid currentColor;
-border-bottom:2px solid currentColor;
-transform:rotate(-45deg);
-opacity:.85
-}
+    .submenu a:hover{
+      background:rgba(255,255,255,.06);
+    }
 
-.tab[aria-expanded="true"] .caret{
-transform:rotate(45deg)
-}
+    .hint{
+      color:var(--muted);
+      font-size:12px;
+    }
 
-.submenu{
-display:none;
-padding:6px 8px 12px 8px
-}
-
-.submenu[data-open="true"]{
-display:block
-}
-
-.submenu a{
-display:grid;
-grid-template-columns:22px 1fr;
-align-items:center;
-gap:10px;
-padding:14px;
-color:var(--fg);
-text-decoration:none;
-border-radius:8px;
-font-size:18px
-}
-
-.submenu a:hover{
-background:rgba(255,255,255,.06)
-}
-
-.hint{
-color:var(--muted);
-font-size:12px
-}
-
-</style>
+    @media (max-width:540px){
+      body{ padding:8px; }
+      .card{ border-radius:14px; }
+      .overlay-inner{ margin:6vh 12px; }
+      .tab{ font-size:22px; padding:16px; }
+      .submenu a{ font-size:20px; padding:12px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="card">
+  <div class="card">
+    <header>
+      <h1 class="site-title">Wild LATIAS Appeared</h1>
+      <div class="your-name">Lucas Attias</div>
+    </header>
 
-<header>
-<h1 class="site-title">Wild LATIAS Appeared</h1>
-<div class="your-name">Lucas Attias</div>
-</header>
+    <div class="launcher">
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-expanded="false"
+        aria-controls="menuOverlay"
+        onclick="setOverlay(true)">
+        <span class="hamburger"></span>
+      </button>
+    </div>
 
-<div class="launcher">
-<button type="button" id="menuButton" class="menu-button" aria-expanded="false" aria-controls="menuOverlay">
-<span class="hamburger"></span>
-</button>
-</div>
+    <img class="hero" src="LatiasPNG.png" alt="Main page image">
+  </div>
 
-<img class="hero" src="LatiasPNG.png" alt="Main page image" />
+  <div id="menuOverlay" class="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="overlay-inner">
+      <div class="overlay-header">
+        <h2 class="overlay-title">Browse</h2>
+        <button
+          type="button"
+          class="close-btn"
+          id="closeOverlay"
+          onclick="setOverlay(false)">
+          Close ✕
+        </button>
+      </div>
 
-</div>
+      <a class="tab" href="/">Home</a>
 
-<div id="menuOverlay" class="overlay" data-open="false">
+      <a class="tab" href="/Mission.html">Mission</a>
 
-<div class="overlay-inner">
+      <button
+        type="button"
+        class="tab"
+        aria-expanded="false"
+        aria-controls="projectsSub"
+        onclick="toggleSubmenu(this)">
+        Projects <span class="caret" aria-hidden="true"></span>
+      </button>
 
-<div class="overlay-header">
-<h2 class="overlay-title">Browse</h2>
-<button class="close-btn" id="closeOverlay">Close ✕</button>
-</div>
+      <div id="projectsSub" class="submenu" data-open="false">
+        <a href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
+          <span>💼</span>
+          <span>Portfolio<br><span class="hint">GitHub repositories</span></span>
+        </a>
 
-<a class="tab" href="/">Home</a>
+        <a href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener">
+          <span>🎮</span>
+          <span>JungleBoys on Steam<br><span class="hint">Store page</span></span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-<a class="tab" href="/Mission.html">Mission</a>
+  <script>
+    const menuBtn = document.getElementById('menuButton');
+    const overlay = document.getElementById('menuOverlay');
+    const closeBtn = document.getElementById('closeOverlay');
 
-<button type="button" class="tab" aria-expanded="false" aria-controls="projectsSub">
-Projects <span class="caret"></span>
-</button>
+    function setOverlay(open) {
+      overlay.setAttribute('data-open', String(open));
+      menuBtn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
 
-<div id="projectsSub" class="submenu">
+    function toggleSubmenu(button) {
+      const controls = button.getAttribute('aria-controls');
+      const panel = document.getElementById(controls);
+      const expanded = button.getAttribute('aria-expanded') === 'true';
 
-<a href="https://github.com/clefairyx?tab=repositories" target="_blank">
-<span>💼</span>
-<span>Portfolio<br><span class="hint">GitHub repositories</span></span>
-</a>
+      document.querySelectorAll('.tab[aria-controls]').forEach(btn => {
+        if (btn !== button) {
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
 
-<a href="https://store.steampowered.com/app/3519810" target="_blank">
-<span>🎮</span>
-<span>JungleBoys on Steam<br><span class="hint">Store page</span></span>
-</a>
+      document.querySelectorAll('.submenu').forEach(submenu => {
+        if (submenu !== panel) {
+          submenu.setAttribute('data-open', 'false');
+        }
+      });
 
-</div>
-</div>
-</div>
+      button.setAttribute('aria-expanded', String(!expanded));
+      if (panel) {
+        panel.setAttribute('data-open', String(!expanded));
+      }
+    }
 
-<script>
+    menuBtn.addEventListener('pointerup', function(e) {
+      e.preventDefault();
+      setOverlay(true);
+    });
 
-const menuBtn=document.getElementById('menuButton');
-const overlay=document.getElementById('menuOverlay');
-const closeBtn=document.getElementById('closeOverlay');
+    menuBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      setOverlay(true);
+    }, { passive: false });
 
-function setOverlay(open){
-overlay.setAttribute('data-open',String(open));
-menuBtn.setAttribute('aria-expanded',String(open));
-document.body.style.overflow=open?'hidden':'';
-}
+    closeBtn.addEventListener('pointerup', function(e) {
+      e.preventDefault();
+      setOverlay(false);
+    });
 
-menuBtn.addEventListener('click', () => setOverlay(true));
-menuBtn.addEventListener('touchstart', () => setOverlay(true));
-closeBtn.addEventListener('click', () => setOverlay(false));
-closeBtn.addEventListener('touchstart', () => setOverlay(false));
-  
-overlay.addEventListener('click',e=>{
-if(e.target===overlay) setOverlay(false);
-});
+    closeBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      setOverlay(false);
+    }, { passive: false });
 
-document.addEventListener('keydown',e=>{
-if(e.key==='Escape') setOverlay(false);
-});
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        setOverlay(false);
+      }
+    });
 
-document.querySelectorAll('.tab').forEach(tabBtn=>{
-tabBtn.addEventListener('click',()=>{
-const controls=tabBtn.getAttribute('aria-controls');
-const panel=document.getElementById(controls);
-const expanded=tabBtn.getAttribute('aria-expanded')==='true';
+    overlay.addEventListener('touchend', function(e) {
+      if (e.target === overlay) {
+        setOverlay(false);
+      }
+    }, { passive: true });
 
-document.querySelectorAll('.tab').forEach(b=>{
-if(b!==tabBtn) b.setAttribute('aria-expanded','false');
-});
-
-document.querySelectorAll('.submenu').forEach(s=>{
-if(s!==panel) s.setAttribute('data-open','false');
-});
-
-tabBtn.setAttribute('aria-expanded',String(!expanded));
-if(panel) panel.setAttribute('data-open',String(!expanded));
-
-});
-});
-
-</script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        setOverlay(false);
+      }
+    });
+  </script>
 
 </body>
 </html>
