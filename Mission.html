@@ -15,9 +15,26 @@
     .your-name{margin:8px 0 12px;color:var(--muted);font-weight:600;font-size:clamp(18px,2.5vw,24px)}
 
     .launcher{display:flex;justify-content:center;align-items:center;padding:8px 24px 12px}
-    .menu-button{display:flex;align-items:center;justify-content:center;gap:6px;min-width:140px;padding:12px 28px;background:var(--panel-2);border:1px solid rgba(255,255,255,.14);border-radius:14px;color:var(--fg);cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+    .menu-button{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      min-width:220px;
+      padding:18px 40px;
+      background:var(--panel-2);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:16px;
+      color:var(--fg);
+      cursor:pointer;
+      box-shadow:0 10px 28px rgba(0,0,0,.35)
+    } 
     .menu-button:focus-visible{outline:2px solid rgba(124,156,255,.5);outline-offset:4px}
-    .icon{display:block;width:86px;height:auto}
+    .icon{
+      display:block;
+      width:160px;
+      height:auto;
+    }
 
     .overlay{position:fixed;inset:0;display:none;z-index:50;background:#0d111a}
     .overlay[data-open="true"]{display:block}
