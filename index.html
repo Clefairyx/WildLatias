@@ -90,7 +90,7 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      padding:12px;
+      padding:12px 12px 6px;
     }
 
     .menu-button{
@@ -146,62 +146,39 @@
       top:8px;
     }
 
-    .hero{
-      display:block;
-      width:100%;
-      max-width:100%;
-      height:auto;
-      margin:0 auto;
-      object-fit:contain;
-      object-position:center;
-      background:#0b0d12;
-      border:0;
-      padding:0;
+    .inline-menu-wrap{
+      padding:0 16px 16px;
     }
 
-    .overlay{
-      position:fixed;
-      inset:0;
-      z-index:99999;
-      background:rgba(13,17,26,.98);
-      padding:16px;
-      min-height:100dvh;
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transition:opacity .2s ease, visibility .2s ease;
-    }
-
-    .overlay.is-open{
-      opacity:1;
-      visibility:visible;
-      pointer-events:auto;
-    }
-
-    .overlay-inner{
+    .inline-menu{
+      display:none;
       width:min(720px,100%);
-      margin:8dvh auto 0;
+      margin:0 auto;
       background:var(--panel-2);
       border:1px solid rgba(255,255,255,.12);
       border-radius:16px;
-      box-shadow:0 25px 80px rgba(0,0,0,.6);
+      box-shadow:0 16px 40px rgba(0,0,0,.4);
       padding:10px;
     }
 
-    .overlay-header{
+    .inline-menu.is-open{
+      display:block;
+    }
+
+    .menu-header{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:6px 8px 0;
+      padding:6px 8px 8px;
     }
 
-    .overlay-title{
-      margin:0 0 4px 8px;
+    .menu-title{
+      margin:0 0 0 8px;
       font-size:18px;
       color:var(--muted);
     }
 
-    .close-btn{
+    .close-inline-btn{
       background:transparent;
       border:1px solid rgba(255,255,255,.18);
       color:var(--fg);
@@ -212,7 +189,7 @@
       -webkit-tap-highlight-color:transparent;
     }
 
-    .close-btn:hover{
+    .close-inline-btn:hover{
       background:rgba(255,255,255,.08);
     }
 
@@ -286,6 +263,19 @@
       font-size:12px;
     }
 
+    .hero{
+      display:block;
+      width:100%;
+      max-width:100%;
+      height:auto;
+      margin:0 auto;
+      object-fit:contain;
+      object-position:center;
+      background:#0b0d12;
+      border:0;
+      padding:0;
+    }
+
     @media (max-width:540px){
       body{
         padding:8px;
@@ -293,10 +283,6 @@
 
       .card{
         border-radius:14px;
-      }
-
-      .overlay-inner{
-        margin:6vh auto 0;
       }
 
       .tab{
@@ -325,222 +311,110 @@
         id="menuButton"
         class="menu-button"
         aria-expanded="false"
-        aria-controls="menuOverlay"
+        aria-controls="inlineMenu"
         aria-label="Open menu">
         <span class="hamburger"></span>
       </button>
     </div>
 
+    <div class="inline-menu-wrap">
+      <nav
+        id="inlineMenu"
+        class="inline-menu"
+        aria-label="Site menu"
+        aria-hidden="true">
+
+        <div class="menu-header">
+          <h2 class="menu-title">Browse</h2>
+          <button
+            type="button"
+            class="close-inline-btn"
+            id="closeMenuButton"
+            aria-label="Close menu">
+            Close ✕
+          </button>
+        </div>
+
+        <a class="tab" href="/">Home</a>
+
+        <a class="tab" href="/Mission.html">About</a>
+
+        <button
+          type="button"
+          id="projectsToggle"
+          class="tab"
+          aria-expanded="false"
+          aria-controls="projectsSub">
+          <span>Projects</span>
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+
+        <div id="projectsSub" class="submenu" data-open="false">
+          <a href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
+            <span>💼</span>
+            <span>Portfolio<br><span class="hint">GitHub repositories</span></span>
+          </a>
+
+          <a href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener">
+            <span>🎮</span>
+            <span>JungleBoys on Steam<br><span class="hint">Store page</span></span>
+          </a>
+        </div>
+      </nav>
+    </div>
+
     <img class="hero" src="LatiasPNG.png" alt="Main page image">
   </div>
 
-  <div
-    id="menuOverlay"
-    class="overlay"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Site menu"
-    aria-hidden="true">
-    <div class="overlay-inner">
-      <div class="overlay-header">
-        <h2 class="overlay-title">Browse</h2>
-        <button
-          type="button"
-          class="close-btn"
-          id="closeOverlay"
-          aria-label="Close menu">
-          Close ✕
-        </button>
-      </div>
+  <script>
+    (function () {
+      const menuBtn = document.getElementById('menuButton');
+      const inlineMenu = document.getElementById('inlineMenu');
+      const closeMenuButton = document.getElementById('closeMenuButton');
+      const projectsToggle = document.getElementById('projectsToggle');
+      const projectsSub = document.getElementById('projectsSub');
 
-      <a class="tab" href="/">Home</a>
-
-      <a class="tab" href="/Mission.html">About</a>
-
-      <button
-        type="button"
-        id="projectsToggle"
-        class="tab"
-        aria-expanded="false"
-        aria-controls="projectsSub">
-        <span>Projects</span>
-        <span class="caret" aria-hidden="true"></span>
-      </button>
-
-      <div id="projectsSub" class="submenu" data-open="false">
-        <a href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
-          <span>💼</span>
-          <span>Portfolio<br><span class="hint">GitHub repositories</span></span>
-        </a>
-
-        <a href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener">
-          <span>🎮</span>
-          <span>JungleBoys on Steam<br><span class="hint">Store page</span></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-<script>
-  (function () {
-    let handlersBound = false;
-
-    function qs(id) {
-      return document.getElementById(id);
-    }
-
-    function getElements() {
-      return {
-        menuBtn: qs('menuButton'),
-        overlay: qs('menuOverlay'),
-        closeBtn: qs('closeOverlay'),
-        projectsToggle: qs('projectsToggle')
-      };
-    }
-
-    function setOverlay(open) {
-      const elements = getElements();
-      const menuBtn = elements.menuBtn;
-      const overlay = elements.overlay;
-
-      if (!menuBtn || !overlay) return;
-
-      overlay.classList.toggle('is-open', open);
-      overlay.setAttribute('aria-hidden', String(!open));
-      menuBtn.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-
-      if (!open) {
-        document.querySelectorAll('.tab[aria-controls]').forEach(function (button) {
-          button.setAttribute('aria-expanded', 'false');
-        });
-
-        document.querySelectorAll('.submenu').forEach(function (submenu) {
-          submenu.setAttribute('data-open', 'false');
-        });
-      }
-    }
-
-    function toggleSubmenu(button) {
-      if (!button) return;
-
-      const controls = button.getAttribute('aria-controls');
-      const panel = document.getElementById(controls);
-      const expanded = button.getAttribute('aria-expanded') === 'true';
-
-      document.querySelectorAll('.tab[aria-controls]').forEach(function (otherButton) {
-        if (otherButton !== button) {
-          otherButton.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      document.querySelectorAll('.submenu').forEach(function (submenu) {
-        if (submenu !== panel) {
-          submenu.setAttribute('data-open', 'false');
-        }
-      });
-
-      button.setAttribute('aria-expanded', String(!expanded));
-
-      if (panel) {
-        panel.setAttribute('data-open', String(!expanded));
-      }
-    }
-
-    function handleActionFromTarget(target) {
-      if (!(target instanceof Element)) return false;
-
-      const elements = getElements();
-      const menuBtn = elements.menuBtn;
-      const overlay = elements.overlay;
-      const projectsToggle = elements.projectsToggle;
-
-      if (!overlay) return false;
-
-      const menuButtonHit = target.closest('#menuButton');
-      if (menuButtonHit && menuBtn) {
-        const isOpen = overlay.classList.contains('is-open');
-        setOverlay(!isOpen);
-        return true;
-      }
-
-      const closeButtonHit = target.closest('#closeOverlay');
-      if (closeButtonHit) {
-        setOverlay(false);
-        return true;
-      }
-
-      const projectsToggleHit = target.closest('#projectsToggle');
-      if (projectsToggleHit && projectsToggle) {
-        toggleSubmenu(projectsToggle);
-        return true;
-      }
-
-      if (target === overlay) {
-        setOverlay(false);
-        return true;
-      }
-
-      return false;
-    }
-
-    function delegatedClick(event) {
-      const handled = handleActionFromTarget(event.target);
-
-      if (handled) {
-        event.preventDefault();
-      }
-    }
-
-    function delegatedKeydown(event) {
-      if (event.key === 'Escape') {
-        setOverlay(false);
+      if (!menuBtn || !inlineMenu || !closeMenuButton || !projectsToggle || !projectsSub) {
         return;
       }
 
-      if (event.key === 'Enter' || event.key === ' ') {
-        const target = event.target;
+      function setMenuOpen(open) {
+        inlineMenu.classList.toggle('is-open', open);
+        inlineMenu.setAttribute('aria-hidden', String(!open));
+        menuBtn.setAttribute('aria-expanded', String(open));
 
-        if (!(target instanceof Element)) return;
-
-        const actionable = target.closest('#menuButton, #closeOverlay, #projectsToggle');
-        if (!actionable) return;
-
-        event.preventDefault();
-        handleActionFromTarget(actionable);
-      }
-    }
-
-    function bindHandlers() {
-      if (handlersBound) return;
-      handlersBound = true;
-
-      document.addEventListener('click', delegatedClick, true);
-      document.addEventListener('keydown', delegatedKeydown, true);
-    }
-
-    function initMenu() {
-      const elements = getElements();
-
-      if (!elements.menuBtn || !elements.overlay || !elements.closeBtn || !elements.projectsToggle) {
-        return;
+        if (!open) {
+          projectsToggle.setAttribute('aria-expanded', 'false');
+          projectsSub.setAttribute('data-open', 'false');
+        }
       }
 
-      setOverlay(false);
-      bindHandlers();
-    }
-
-    document.addEventListener('DOMContentLoaded', initMenu);
-    window.addEventListener('load', initMenu);
-    window.addEventListener('pageshow', initMenu);
-
-    document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'visible') {
-        initMenu();
+      function toggleProjects() {
+        const expanded = projectsToggle.getAttribute('aria-expanded') === 'true';
+        projectsToggle.setAttribute('aria-expanded', String(!expanded));
+        projectsSub.setAttribute('data-open', String(!expanded));
       }
-    });
-  })();
-</script>
+
+      menuBtn.addEventListener('click', function () {
+        const isOpen = inlineMenu.classList.contains('is-open');
+        setMenuOpen(!isOpen);
+      });
+
+      closeMenuButton.addEventListener('click', function () {
+        setMenuOpen(false);
+      });
+
+      projectsToggle.addEventListener('click', function () {
+        toggleProjects();
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          setMenuOpen(false);
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
