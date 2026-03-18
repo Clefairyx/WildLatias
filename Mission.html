@@ -63,33 +63,32 @@
       </button>
     </div>
 
-    <div id="menuOverlay" class="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
-      <div class="overlay-inner">
-        <div class="overlay-header">
-          <h2 class="overlay-title">Browse</h2>
-          <button class="close-btn" id="closeOverlay">Close ✕</button>
-        </div>
-
-        <button class="tab" aria-expanded="false" aria-controls="homeSub">Home <span class="caret" aria-hidden="true"></span></button>
-        <div id="homeSub" class="submenu" data-open="false">
-          <a role="menuitem" href="/"><span>🏠</span><span>Back to Home</span></a>
-        </div>
-
-        <button class="tab" aria-expanded="false" aria-controls="aboutSub">About <span class="caret" aria-hidden="true"></span></button>
-        <div id="aboutSub" class="submenu" data-open="false">
-          <a role="menuitem" href="/Mission.html"><span>✨</span><span>Mission Statement<br><span class="hint">by Lattias</span></span></a>
-          <a role="menuitem" href="/resume.html" rel="noopener"><span>📄</span><span>Resume<br><span class="hint">Opens PDF</span></span></a>
-        </div>
-
-        <button class="tab" aria-expanded="false" aria-controls="projectsSub">Projects <span class="caret" aria-hidden="true"></span></button>
-        <div id="projectsSub" class="submenu" data-open="false">
-          <a role="menuitem" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener"><span>💼</span><span>Portfolio<br><span class="hint">GitHub repositories</span></span></a>
-          <a role="menuitem" href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener"><span>🎮</span><span>Steam<br><span class="hint">Store page</span></span></a>
-          <a role="menuitem" href="https://soundcloud.com/rigatoni_od" target="_blank" rel="noopener"><span>🎵</span><span>Music<br><span class="hint">Soundcloud</span></span></a>
-        </div>
-      </div>
+   <div id="menuOverlay" class="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="overlay-inner">
+    <div class="overlay-header">
+      <h2 class="overlay-title">Browse</h2>
+      <button class="close-btn" id="closeOverlay">Close ✕</button>
     </div>
 
+    <a class="tab" href="/">Home</a>
+
+    <a class="tab" href="/Mission.html">About</a>
+
+    <button class="tab" aria-expanded="false" aria-controls="projectsSub">
+      Projects <span class="caret" aria-hidden="true"></span>
+    </button>
+    <div id="projectsSub" class="submenu" data-open="false">
+      <a role="menuitem" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
+        <span>💼</span>
+        <span>Portfolio<br><span class="hint">GitHub repositories</span></span>
+      </a>
+      <a role="menuitem" href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener">
+        <span>🎮</span>
+        <span>Steam<br><span class="hint">Store page</span></span>
+      </a>
+    </div>
+  </div>
+</div>
     <main>
       <!-- Replace with your paragraphs, one <p> per paragraph -->
     
