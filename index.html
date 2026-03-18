@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta http-equiv="Cache-Control" content="no-cache">
+
   <!-- Open Graph -->
   <meta property="og:title" content="Wild Latias Appeared — Lucas Attias">
   <meta property="og:description" content="Portfolio site of Lucas Attias featuring projects, game development, data science work, and creative experiments bridging analytics, psychology, and design.">
@@ -37,7 +38,9 @@
       --ring:rgba(124,156,255,.5);
     }
 
-    *{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+    }
 
     body{
       margin:0;
@@ -135,8 +138,13 @@
       border-radius:2px;
     }
 
-    .hamburger::before{ top:-8px; }
-    .hamburger::after{ top:8px; }
+    .hamburger::before{
+      top:-8px;
+    }
+
+    .hamburger::after{
+      top:8px;
+    }
 
     .hero{
       display:block;
@@ -158,10 +166,10 @@
       background:rgba(13,17,26,.98);
       padding:16px;
       min-height:100dvh;
-
       opacity:0;
       visibility:hidden;
       pointer-events:none;
+      transition:opacity .2s ease, visibility .2s ease;
     }
 
     .overlay.is-open{
@@ -283,13 +291,23 @@
     }
 
     @media (max-width:540px){
-      body{ padding:8px; }
-      .card{ border-radius:14px; }
-      .overlay-inner{ margin:6vh auto 0; }
+      body{
+        padding:8px;
+      }
+
+      .card{
+        border-radius:14px;
+      }
+
+      .overlay-inner{
+        margin:6vh auto 0;
+      }
+
       .tab{
         font-size:22px;
         padding:16px;
       }
+
       .submenu a{
         font-size:20px;
         padding:12px;
@@ -311,7 +329,8 @@
         id="menuButton"
         class="menu-button"
         aria-expanded="false"
-        aria-controls="menuOverlay">
+        aria-controls="menuOverlay"
+        aria-label="Open menu">
         <span class="hamburger"></span>
       </button>
     </div>
@@ -331,7 +350,8 @@
         <button
           type="button"
           class="close-btn"
-          id="closeOverlay">
+          id="closeOverlay"
+          aria-label="Close menu">
           Close ✕
         </button>
       </div>
@@ -342,10 +362,12 @@
 
       <button
         type="button"
+        id="projectsToggle"
         class="tab"
         aria-expanded="false"
         aria-controls="projectsSub">
-        Projects <span class="caret" aria-hidden="true"></span>
+        <span>Projects</span>
+        <span class="caret" aria-hidden="true"></span>
       </button>
 
       <div id="projectsSub" class="submenu" data-open="false">
@@ -369,18 +391,14 @@
     const projectsToggle = document.getElementById('projectsToggle');
 
     function setOverlay(open) {
-      overlay.style.display = open ? 'block' : 'none';
-      overlay.setAttribute('data-open', String(open));
+      overlay.classList.toggle('is-open', open);
       menuBtn.setAttribute('aria-expanded', String(open));
       document.body.style.overflow = open ? 'hidden' : '';
       document.body.classList.toggle('menu-open', open);
 
-      if (open) {
-        overlay.offsetHeight;
-      }
       if (!open) {
-        document.querySelectorAll('.tab[aria-controls]').forEach(function(btn) {
-          btn.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.tab[aria-controls]').forEach(function(button) {
+          button.setAttribute('aria-expanded', 'false');
         });
 
         document.querySelectorAll('.submenu').forEach(function(submenu) {
@@ -394,9 +412,9 @@
       const panel = document.getElementById(controls);
       const expanded = button.getAttribute('aria-expanded') === 'true';
 
-      document.querySelectorAll('.tab[aria-controls]').forEach(function(btn) {
-        if (btn !== button) {
-          btn.setAttribute('aria-expanded', 'false');
+      document.querySelectorAll('.tab[aria-controls]').forEach(function(otherButton) {
+        if (otherButton !== button) {
+          otherButton.setAttribute('aria-expanded', 'false');
         }
       });
 
@@ -407,6 +425,7 @@
       });
 
       button.setAttribute('aria-expanded', String(!expanded));
+
       if (panel) {
         panel.setAttribute('data-open', String(!expanded));
       }
@@ -418,13 +437,26 @@
       }
     }
 
+    menuBtn.addEventListener('click', function() {
+      const isOpen = overlay.classList.contains('is-open');
+      setOverlay(!isOpen);
+    });
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
+    closeBtn.addEventListener('click', function() {
+      setOverlay(false);
+    });
+
+    projectsToggle.addEventListener('click', function() {
+      toggleSubmenu(projectsToggle);
+    });
+
+    overlay.addEventListener('click', closeOverlayBackground);
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
         setOverlay(false);
       }
     });
-
   </script>
 
 </body>
