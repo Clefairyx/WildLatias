@@ -155,15 +155,21 @@
 
     .overlay{
       position:fixed;
-      inset:0;
-      display:none;
-      z-index:50;
-      background:#0d111a;
-      padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      top:0;
+      right:0;
+      bottom:0;
+      left:0;
+      z-index:9999;
+      background:rgba(13,17,26,0.98);
+      visibility:hidden;
+      opacity:0;
+      pointer-events:none;
     }
 
     .overlay[data-open="true"]{
-      display:block;
+      visibility:visible;
+      opacity:1;
+      pointer-events:auto;
     }
 
     .overlay-inner{
@@ -350,10 +356,12 @@
   const overlay = document.getElementById('menuOverlay');
   const closeBtn = document.getElementById('closeOverlay');
 
-  function setOverlay(open){
-    overlay.setAttribute('data-open', String(open));
-    menuBtn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
+    function setOverlay(open){
+      overlay.setAttribute('data-open', String(open));
+      menuBtn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+      document.body.classList.toggle('menu-open', open);
+    }
 
     if(open){
       menuBtn.style.display = "none";
