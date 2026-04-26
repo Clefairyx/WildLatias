@@ -402,31 +402,32 @@
 
         <a class="tab" href="/Mission.html">About</a>
 
-        <!-- Data Analytics Projects -->
-        <a class="tab" href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">Data Analytics Projects</a>
-
-        <!-- Video Game Projects -->
         <button
           type="button"
-          id="gamesToggle"
+          id="projectsToggle"
           class="tab"
           aria-expanded="false"
-          aria-controls="gamesSub">
-          <span>Video Game Projects</span>
+          aria-controls="projectsSub">
+          <span>Projects</span>
           <span class="caret" aria-hidden="true"></span>
         </button>
 
-        <div id="gamesSub" class="submenu" data-open="false">
+        <div id="projectsSub" class="submenu" data-open="false">
+          <a href="https://github.com/clefairyx?tab=repositories" target="_blank" rel="noopener">
+            <span>💼</span>
+            <span>GitHub Repositories <br><span class="hint">Data analyses and other projects</span></span>
+          </a>
+          
           <a href="https://store.steampowered.com/app/4544080/Rogue_Sundown/" target="_blank" rel="noopener">
             <span>🎮</span>
             <span>Rogue Sundown on Steam<br><span class="hint">Store page</span></span>
           </a>
+
           <a href="https://store.steampowered.com/app/3519810" target="_blank" rel="noopener">
             <span>🎮</span>
             <span>JungleBoys on Steam<br><span class="hint">Store page</span></span>
           </a>
         </div>
-
       </div>
 
       <div class="hero-wrap">
@@ -441,15 +442,14 @@
       const menuBtn = document.getElementById('menuButton');
       const floatingMenu = document.getElementById('floatingMenu');
       const closeMenuButton = document.getElementById('closeMenuButton');
+      const projectsToggle = document.getElementById('projectsToggle');
+      const projectsSub = document.getElementById('projectsSub');
       const heroImage = document.getElementById('heroImage');
       const heroDim = document.getElementById('heroDim');
 
-      // Accordion toggles: [button, submenu]
-      const accordions = [
-        [document.getElementById('gamesToggle'), document.getElementById('gamesSub')],
-      ];
-
-      if (!menuBtn || !floatingMenu || !closeMenuButton || !heroImage || !heroDim) return;
+      if (!menuBtn || !floatingMenu || !closeMenuButton || !projectsToggle || !projectsSub || !heroImage || !heroDim) {
+        return;
+      }
 
       function setMenuOpen(open) {
         floatingMenu.classList.toggle('is-open', open);
@@ -459,35 +459,34 @@
         heroDim.classList.toggle('is-active', open);
 
         if (!open) {
-          accordions.forEach(([btn, sub]) => {
-            btn.setAttribute('aria-expanded', 'false');
-            sub.setAttribute('data-open', 'false');
-          });
+          projectsToggle.setAttribute('aria-expanded', 'false');
+          projectsSub.setAttribute('data-open', 'false');
         }
       }
 
-      function makeToggler(btn, sub) {
-        return function () {
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', String(!expanded));
-          sub.setAttribute('data-open', String(!expanded));
-        };
+      function toggleProjects() {
+        const expanded = projectsToggle.getAttribute('aria-expanded') === 'true';
+        projectsToggle.setAttribute('aria-expanded', String(!expanded));
+        projectsSub.setAttribute('data-open', String(!expanded));
       }
 
       menuBtn.addEventListener('click', function () {
-        setMenuOpen(!floatingMenu.classList.contains('is-open'));
+        const isOpen = floatingMenu.classList.contains('is-open');
+        setMenuOpen(!isOpen);
       });
 
       closeMenuButton.addEventListener('click', function () {
         setMenuOpen(false);
       });
 
-      accordions.forEach(([btn, sub]) => {
-        btn.addEventListener('click', makeToggler(btn, sub));
+      projectsToggle.addEventListener('click', function () {
+        toggleProjects();
       });
 
       document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') setMenuOpen(false);
+        if (event.key === 'Escape') {
+          setMenuOpen(false);
+        }
       });
     })();
   </script>
